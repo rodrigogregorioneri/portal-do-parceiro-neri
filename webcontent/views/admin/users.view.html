@@ -1,0 +1,129 @@
+<h3>{{'Users.view.Users' | translate}}</h3> 
+<div class="component-holder ng-binding ng-scope ui-draggable ui-draggable-handle" data-component="crn-datasource" id="crn-datasource-763276"> 
+  <datasource name="User" entity="api/rest/security/User" keys="id" rows-per-page="100" class="" delete-message="{{'Users.view.RemoverUsuario' | translate}}?"></datasource> 
+</div> 
+<div class="component-holder ng-binding ng-scope ui-draggable ui-draggable-handle" data-component="crn-datasource" id="crn-datasource-276971"> 
+  <datasource name="AllRoles" entity="api/rest/security/Role" keys="id" rows-per-page="100" class=""></datasource> 
+</div> 
+<div class="component-holder ng-binding ng-scope ui-draggable ui-draggable-handle" data-component="crn-button" id="crn-button-564202"> 
+  <button class="btn btn-primary" type="submit" onclick="" ng-click="User.startInserting()" ng-hide="User.inserting || User.editing"><i class="fa fa-user"></i> <span class="">{{'Users.view.Add A New User' | translate}}</span> </button> 
+</div> 
+<div class="component-holder ng-binding ng-scope ui-draggable ui-draggable-handle" data-component="crn-grid" id="crn-grid-852138"> 
+  <div crn-datasource="User" class="" ng-hide="User.editing || User.inserting"> 
+    <table class="table  table-bordered table-hover"> 
+      <thead> 
+        <tr class="table-header"> 
+          <th class="active"> 
+            <div data-container="true" class="">
+               {{'Users.view.Picture' | translate}} 
+            </div> </th> 
+          <th class=""> 
+            <div data-container="true" class="">
+               {{'Users.view.Name' | translate}} 
+            </div> </th> 
+          <th class=""> 
+            <div data-container="true" class="">
+               {{'Users.view.Login' | translate}} 
+            </div> </th> 
+          <th> 
+            <div data-container="true" class="">
+               {{'Users.view.Actions' | translate}} 
+            </div> </th> 
+        </tr> 
+      </thead> 
+      <tbody> 
+        <tr class="table-content" ng-repeat="rowData in datasource.data"> 
+          <td class="active"> 
+            <div class="component-holder ng-binding ng-scope ui-draggable ui-draggable-handle" data-component="crn-image" id="crn-image-428333"> 
+              <img ng-src="{{rowData.picture || 'img/nophoto.png'}}" class="picture-profile" width="50" height="50"> 
+            </div> </td> 
+          <td class=""> 
+            <div data-container="true" class="">
+               {{rowData.name}} 
+            </div> </td> 
+          <td class=""> 
+            <div data-container="true" class="">
+               {{rowData.login}} 
+            </div> </td> 
+          <td class=""> 
+            <div data-container="true" class=""> 
+              <button class="btn btn-default btn-sm" type="submit" ng-click="datasource.startEditing(rowData)"><i class="fa fa-edit"></i><span class="">{{'Users.view.Edit' | translate}}</span> </button> 
+              <button class="btn btn-default btn-sm" type="submit" ng-click="datasource.remove(rowData)"><i class="fa fa-times"></i> <span>{{'Users.view.Remove' | translate}}</span></button> 
+            </div> </td> 
+        </tr> 
+      </tbody> 
+    </table> 
+    <div class="table-footer-controls"> 
+      <button class="btn btn-default btn-block btn-clicked" ng-show="datasource.hasNextPage()" ng-click="datasource.nextPage()">{{'Users.view.Load More' | translate}}... </button> 
+    </div> 
+  </div> 
+</div> 
+<div class="component-holder ng-binding ng-scope ui-draggable ui-draggable-handle" data-component="crn-form" id="crn-form-319115"> 
+  <div class="form" ng-show="User.editing || User.inserting"> 
+    <form crn-datasource="User" class=""> 
+      <div class="tool-bar" ng-hide="datasource.editing || datasource.inserting"> 
+        <button class="btn btn-primary" ng-click="datasource.startInserting()"><i class="glyphicon glyphicon-plus-sign"></i></button> 
+        <button class="btn btn-success" ng-click="datasource.startEditing()"><i class="glyphicon glyphicon-edit"></i></button> 
+        <button class="btn btn-primary" ng-disabled="!datasource.hasPrevious()" ng-click="datasource.previous()"><i class="glyphicon glyphicon-chevron-left"></i></button> 
+        <button class="btn btn-primary" ng-disabled="!datasource.hasNext()" ng-click="datasource.next()"><i class="glyphicon glyphicon-chevron-right"></i></button> 
+        <button class="btn btn-primary" ng-click="datasource.remove()"><i class="glyphicon glyphicon-trash"></i> </button> 
+      </div> 
+      <div class="active-bar" ng-hide="!datasource.editing &amp;&amp; !datasource.inserting"> 
+        <button class="btn btn-success" ng-click="datasource.post()"><i class="glyphicon glyphicon-ok"></i> </button> 
+        <button class="btn btn-danger" ng-click="datasource.cancel()"><i class="glyphicon glyphicon-remove"></i> </button> 
+      </div> 
+      <fieldset ng-disabled="!datasource.editing &amp;&amp; !datasource.inserting"> 
+        <div class="component-holder ng-binding ng-scope ui-draggable ui-draggable-handle" data-component="crn-datasource" id="crn-datasource-656503"> 
+          <datasource append="false" name="Roles" entity="api/rest/security/User/{{User.active.id}}/Role" keys="id" rows-per-page="100" class="" lazy="true" auto-post="true" enabled="{{User.editing}}"></datasource> 
+        </div> 
+        <div class="component-holder ng-binding ng-scope ui-draggable ui-draggable-handle" data-component="crn-textinput" id="crn-textinput-61057"> 
+          <div class="form-group"> 
+            <label for="textinput-name" class="">{{'Users.view.Name' | translate}}</label> 
+            <input type="text" ng-model="User.active.name" class="form-control" id="textinput-name" placeholder="nome completo"> 
+          </div> 
+        </div> 
+        <div class="component-holder ng-binding ng-scope ui-draggable ui-draggable-handle" data-component="crn-textinput" id="crn-textinput-950960"> 
+          <div class="form-group"> 
+            <label for="textinput-login" class="">{{'Users.view.Login' | translate}}</label> 
+            <input type="text" ng-model="datasource.active.login" class="form-control" id="textinput-login" placeholder="identificação"> 
+          </div> 
+        </div> 
+        <div class="component-holder ng-binding ng-scope ui-draggable ui-draggable-handle" data-component="crn-textinput" id="crn-textinput-senha"> 
+          <div class="form-group"> 
+            <label for="password" class="">{{'Users.view.Senha' | translate}}</label> 
+            <input id="password" type="password" ng-model="datasource.active.password" class="form-control" placeholder="{{'Users.view.Senha' | translate}}"> 
+          </div> 
+        </div> 
+        
+        <!-- <div class="component-holder ng-binding ng-scope ui-draggable ui-draggable-handle" data-component="crn-textinput" id="crn-textinput-confirm-senha"> 
+          <div class="form-group"> 
+            <label for="textinput-password-confirm" class="">{{'Users.view.Confirmacao' | translate}}</label> 
+            <input id="textinput-password-confirm" type="password" class="form-control" placeholder="{{'Users.view.ConfirmeSuaSenha' | translate}}" pwCheck="password"> 
+            <div class="msg-block" ng-show="$error"> 
+              <span class="msg-error" ng-show="$error.pwmatch">Passwords don't match.</span> 
+            </div>     
+          </div> 
+        </div> -->
+        
+        <div class="form-group" ng-show="User.editing"> 
+          <label for="select-roles" class="">{{'Users.view.Roles' | translate}}</label> 
+          <div id="select-roles" class="component-holder ng-binding ng-scope ui-draggable ui-draggable-handle selected-holder" data-component="crn-tags"> 
+            <ui-select multiple crn-datasource="AllRoles" ng-model="Roles.data" class="crn-select" style="min-width: 200px" theme="bootstrap"> 
+              <ui-select-match placeholder="{{'Users.view.Select Person' | translate}}..." class="">
+                 {{$item.name}} 
+              </ui-select-match> 
+              <ui-select-choices repeat="rowData in datasource.data | filter : $select.search" class=""> 
+                <div class="" data-container="true">
+                   {{rowData.name}} 
+                </div> 
+              </ui-select-choices> 
+            </ui-select> 
+          </div> 
+        </div> 
+      </fieldset> 
+    </form> 
+  </div> 
+</div> 
+<script>
+  $('#password').pwstrength({ui: { showVerdictsInsideProgressBar: true }});
+</script>

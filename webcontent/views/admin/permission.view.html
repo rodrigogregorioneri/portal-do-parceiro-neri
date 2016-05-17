@@ -1,0 +1,125 @@
+<h3>{{'Permission.view.Permission' | translate}}</h3> 
+<div class="component-holder ng-binding ng-scope ui-draggable ui-draggable-handle" data-component="crn-datasource" id="crn-datasource-763276"> 
+  <datasource name="Permission" entity="api/rest/security/Permission" keys="id" rows-per-page="100" class=""></datasource> 
+</div> 
+<div class="component-holder ng-binding ng-scope ui-draggable ui-draggable-handle" data-component="crn-datasource" id="crn-datasource-493153"> 
+  <datasource name="AllRoles" entity="api/rest/security/Role" keys="id" rows-per-page="100" class=""></datasource> 
+</div> 
+<div class="component-holder ng-binding ng-scope ui-draggable ui-draggable-handle" data-component="crn-button" id="crn-button-564202"> 
+  <button class="btn btn-primary" type="submit" onclick="" ng-click="Permission.startInserting()"><i class="fa fa-lock"></i> <span class="">{{'Permission.view.Add New Permission' | translate}}</span></button> 
+</div> 
+<div class="component-holder ng-binding ng-scope ui-draggable ui-draggable-handle" data-component="crn-grid" id="crn-grid-852138"> 
+  <div crn-datasource="Permission" class="" ng-hide="Permission.editing || Permission.inserting"> 
+    <table class="table  table-bordered table-hover"> 
+      <tbody> 
+        <tr class="table-header"> 
+          <th> 
+            <div data-container="true" class="">
+               {{'Permission.view.Path' | translate}} 
+            </div></th> 
+          <th> 
+            <div data-container="true" class="">
+               {{'Permission.view.Verb' | translate}} 
+            </div></th> 
+          <th> 
+            <div data-container="true" class="">
+               {{'Permission.view.Role' | translate}} 
+            </div></th> 
+          <th> 
+            <div data-container="true" class="">
+               {{'Permission.view.Actions' | translate}} 
+            </div></th> 
+        </tr> 
+      </tbody> 
+      <tbody class=""> 
+        <tr class="table-content" ng-repeat="rowData in datasource.data"> 
+          <td> 
+            <div data-container="true" class="">
+               {{rowData.path}} 
+            </div></td> 
+          <td class=""> 
+            <div data-container="true" class="">
+               {{rowData.verb}} 
+            </div></td> 
+          <td> 
+            <div data-container="true" class="">
+               {{rowData.role.name}} 
+            </div></td> 
+          <td> 
+            <div data-container="true" class=""> 
+              <button class="btn btn-default btn-sm" type="submit" ng-click="datasource.startEditing(rowData)"><i class="fa fa-edit"></i><span class="">{{'Permission.view.Edit' | translate}}</span></button> 
+              <button class="btn btn-default btn-sm" type="submit" ng-click="datasource.remove(rowData)"><i class="fa fa-times"></i> <span>{{'Permission.view.Remove' | translate}}</span></button> 
+            </div></td> 
+        </tr> 
+      </tbody> 
+    </table> 
+    <div class="table-footer-controls"> 
+      <button class="btn btn-default btn-block btn-clicked" ng-show="datasource.hasNextPage()" ng-click="datasource.nextPage()">{{'Permission.view.Load More' | translate}}...</button> 
+    </div> 
+  </div> 
+</div> 
+<div class="component-holder ng-binding ng-scope ui-draggable ui-draggable-handle" data-component="crn-form" id="crn-form-149102"> 
+  <div class="form" ng-show="Permission.editing || Permission.inserting"> 
+    <form crn-datasource="Permission" class=""> 
+      <div class="tool-bar" ng-hide="datasource.editing || datasource.inserting"> 
+        <button class="btn btn-primary" ng-click="datasource.startInserting()"><i class="glyphicon glyphicon-plus-sign"></i></button> 
+        <button class="btn btn-success" ng-click="datasource.startEditing()"><i class="glyphicon glyphicon-edit"></i></button> 
+        <button class="btn btn-primary" ng-disabled="!datasource.hasPrevious()" ng-click="datasource.previous()"><i class="glyphicon glyphicon-chevron-left"></i></button> 
+        <button class="btn btn-primary" ng-disabled="!datasource.hasNext()" ng-click="datasource.next()"><i class="glyphicon glyphicon-chevron-right"></i></button> 
+        <button class="btn btn-primary" ng-click="datasource.remove()"><i class="glyphicon glyphicon-trash"></i></button> 
+      </div> 
+      <div class="active-bar" ng-hide="!datasource.editing &amp;&amp; !datasource.inserting"> 
+        <button class="btn btn-success" ng-click="datasource.post()"><i class="glyphicon glyphicon-ok"></i></button> 
+        <button class="btn btn-danger" ng-click="datasource.cancel()"><i class="glyphicon glyphicon-remove"></i></button> 
+      </div> 
+      <fieldset ng-disabled="!datasource.editing &amp;&amp; !datasource.inserting" class=""> 
+        <div class="component-holder ng-binding ng-scope ui-draggable ui-draggable-handle selected-holder" data-component="crn-combobox-dynamic" id="crn-combobox-dynamic-567272"> 
+          <label class="">{{'Permission.view.Role' | translate}}</label> 
+          <ui-select crn-datasource="AllRoles" ng-model="Permission.active.role" ng-disabled="disabled" class="crn-select"> 
+            <ui-select-match class="">
+               {{$select.selected.name}} 
+            </ui-select-match> 
+            <ui-select-choices repeat="rowData as rowData in datasource.data | filter : $select.search" class=""> 
+              <div class="" data-container="true">
+                 {{rowData.name}} 
+              </div> 
+            </ui-select-choices> 
+          </ui-select> 
+        </div> 
+        <div class="component-holder ng-binding ng-scope" data-component="crn-combobox" id="crn-combobox-146050">
+          <div class="form-group"> 
+            <label for="">{{'Permission.view.Verb' | translate}}</label> 
+            <ui-select crn-datasource="[{'key': 'ALL','value':'ALL'}, {'key': 'GET','value':'GET'},{'key': 'POST','value':'POST'}, {'key': 'PUT','value':'PUT'}, {'key': 'DELETE','value':'DELETE'}, {'key': 'OPTIONS','value':'OPTIONS'}]" ng-model="Permission.active.verb" ng-disabled="disabled" theme="bootstrap" class="crn-select"> 
+              <ui-select-match placeholder="Select..." class="">
+                 {{$select.selected.value}} 
+              </ui-select-match> 
+              <ui-select-choices repeat="rowData.key as rowData in datasource.data | filter: $select.search" class=""> 
+                <div class="" data-container="true">
+                   {{rowData.value}} 
+                </div> 
+              </ui-select-choices> 
+            </ui-select> 
+          </div>
+        </div> 
+        <div class="component-holder ng-binding ng-scope ui-draggable ui-draggable-handle" data-component="crn-textinput" id="crn-textinput-720508"> 
+          <div class="form-group"> 
+            <label for="textinput-path-id" class="">{{'Permission.view.Path' | translate}}</label> 
+            <input type="text" ng-model="Permission.active.path" class="form-control" id="textinput-path-id"> 
+          </div> 
+        </div> 
+        <div class="component-holder ng-binding ng-scope ui-draggable ui-draggable-handle" data-component="crn-textinput" id="crn-textinput-720508"> 
+          <div class="form-group"> 
+            <label for="textinput-exclude-id" class="">{{'Permission.view.Exclude' | translate}}</label> 
+            <input type="text" ng-model="Permission.active.exclude" class="form-control" id="textinput-exclude-id"> 
+          </div> 
+        </div> 
+        <div class="component-holder ng-binding ng-scope ui-draggable ui-draggable-handle" data-component="crn-textinput" id="crn-textinput-720508"> 
+          <div class="form-group"> 
+            <label for="textinput-priority-id" class="">{{'Permission.view.Priority' | translate}}</label> 
+            <input type="number" ng-model="Permission.active.priority" class="form-control" id="textinput-priority-id"> 
+          </div> 
+        </div> 
+      </fieldset> 
+    </form> 
+  </div> 
+</div>

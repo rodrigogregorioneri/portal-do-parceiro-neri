@@ -1,3 +1,2 @@
-# portal-do-parceiro-neri
-
-Projeto portal do parceiro
+# portal-do-parceiro
+Portal do Parceiro
